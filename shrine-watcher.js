@@ -1,4 +1,4 @@
-// Drop animated sigil embed in Discord
+npm install express body-parser paypal-ipn// Drop animated sigil embed in Discord
 await discordClient.send({
   channel: SIGIL_CHANNEL_ID,
   embed: {
