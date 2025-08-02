@@ -1,4 +1,38 @@
-## 🔮 Features
+## .github/workflows/deploy-shrine.yml
+name: Deploy Shrine Vault
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+      - src/config/paypal.ts
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Ruby (for Jekyll)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+
+      - name: Install dependencies
+        run: |
+          gem install bundler jekyll
+          bundle install
+
+      - name: Build site
+        run: jekyll build --destination _site
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site 🔮 Features
 - Auto-verifies PayPal IPNs
 - Drops “First Echo” embeds in Discord channels
 - Tracks and timestamps shrine activations
