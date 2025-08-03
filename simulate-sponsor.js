@@ -1,4 +1,4 @@
-/name: Sponsor Simulation Ritual
+name: Sponsor Simulation Ritual
 
 on:
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
           PAYPAL_API_USER: ${{ secrets.PAYPAL_API_USER }}
           PAYPAL_API_PWD: ${{ secrets.PAYPAL_API_PWD }}
           PAYPAL_API_SIGNATURE: ${{ secrets.PAYPAL_API_SIGNATURE }}
-        run: node simulate-sponsor.js
+        run: node rituals/simulate-sponsor.js
 
       - name: Commit Sponsor Scroll
         run: |
@@ -35,63 +35,4 @@ jobs:
           git commit -m "🌠 Echo fired: scroll updated"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} simulate-sponsor.js
-const https = require('https');
-// simulate-sponsor.js
-const https = require('https');
-
-const payload = new URLSearchParams({
-  txn_type: 'subscr_payment',
-  subscr_id: 'I-L3XR3MYTHICO',
-  payer_email: 'mythic-fan@example.com',
-  mc_gross: '5.00',
-  mc_currency: 'USD',
-  custom: 'Archetype=EchoCatalyst',
-});
-
-const options = {
-  method: 'POST',
-  hostname: 'your-listener-domain.com',
-  path: '/api/ipn',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Content-Length': Buffer.byteLength(payload.toString()),
-  },
-};
-
-const req = https.request(options, (res) => {
-  console.log(`IPN Response: ${res.statusCode}`);
-  res.on('data', (chunk) => process.stdout.write(chunk));
-});
-
-req.on('error', (err) => console.error(`Simulation error: ${err.message}`));
-req.write(payload.toString());
-req.end();
-const payload = new URLSearchParams({
-  txn_type: 'subscr_payment',
-  subscr_id: 'I-L3XR3MYTHICO',
-  payer_email: 'mythic-fan@example.com',
-  mc_gross: '5.00',
-  mc_currency: 'USD',
-  custom: 'Archetype=EchoCatalyst',
-});env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-const options = {
-  method: 'POST',
-  hostname: 'your-listener-domain.com',
-  path: '/api/ipn',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Content-Length': Buffer.byteLength(payload.toString()),
-  },
-};
-
-const req = https.request(options, (res) => {
-  console.log(`IPN Response: ${res.statusCode}`);
-  res.on('data', (chunk) => process.stdout.write(chunk));
-});
-
-req.on('error', (err) => console.error(`Simulation error: ${err.message}`));
-req.write(payload.toString());
-req.end();
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
