@@ -74,7 +74,8 @@ const payload = new URLSearchParams({
   mc_gross: '5.00',
   mc_currency: 'USD',
   custom: 'Archetype=EchoCatalyst',
-});
+});env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 const options = {
   method: 'POST',
