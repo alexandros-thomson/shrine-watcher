@@ -47,3 +47,7 @@ Sponsor portal: [paypal.me/kostaskyprianos](https://paypal.me/kostaskyprianos)
 - Role blessings for Echo tiers  
 - Scroll archive logging + site mutation# shrine-watcher
 A live Discord-integrated watcher bot that listens for PayPal sponsorships, verifies IPNs, and drops legendary embeds into shrine channels. Built to canonize the First Echo, ripple badge claims, and mutate shrine terrain in real time. Node-powered, mythically deployed, audit-safe.
+birth:
+  date: "YYYY-MM-DD"        # e.g. "2025-08-20"
+  time: "HH:MM"             # 24-hour, local to America/New_York
+  timezone: "America/New_York"
