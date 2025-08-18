@@ -1,3 +1,24 @@
+## ⛨ Founders’ Gate Bundle  
+
+The Basilica Gate stands open to those who would walk as Founders. By entering, you unlock the inner cloister of **shrine‑watcher** — the Discord sentinel that canonizes sponsorships and audits claims in real time.
+
+**Sponsor‑only tributes include**:  
+- 🎞 **Animated CLI procession** — private tours of the watcher’s ceremonial commands.  
+- 📜 **Crest‑marked manifest templates** — ready to drop into your own shrines.  
+- 🛡 **Canonized badge scripts** — sponsor‑grade insignia for your realm.  
+- 🗝 **Role in the Basilica Discord** — direct access to fellow stewards and keepers of lore.  
+
+**Gate Status**  
+> Sponsors: **2**  
+> Monthly Support: **$14**  
+> Tiers: **Keeper’s Seal ($5)**, **Era‑Warden’s Crest ($9)**
+
+**Enter the Gate** → [Become a Sponsor](https://github.com/sponsors/alexandros-thomson)
+
+---
+
+> _“Every pledge is a stone in the Basilica’s foundation. Your name is etched into the living legend.”_
+
 ## .github/workflows/deploy-shrine.yml
 name: Deploy Shrine Vault
 
@@ -63,8 +84,4 @@ Sponsor portal: [paypal.me/kostaskyprianos](https://paypal.me/kostaskyprianos)
 - Role blessings for Echo tiers  
 - Scroll archive logging + site mutation
 # shrine-watcher
-A live Discord-integrated watcher bot that listens for PayPal sponsorships, verifies IPNs, and drops legendary embeds into shrine channels. Built to canonize the First Echo, ripple badge claims, and keep the canon alive.
-birth:
-  date: "YYYY-MM-DD"        # e.g. "2025-08-20"
-  time: "HH:MM"             # 24-hour, local to America/New_York
-  timezone: "America/New_York"
+A live Discord-integrated watcher bot that listens for PayPal sponsorships, verifies IPNs, and drops legendary embeds into shrine channels. Built to canonize the First Echo, ripple badge claims, a[...]
