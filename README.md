@@ -32,7 +32,23 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site 🔮 Features
+          publish_dir: ./_site
+
+---
+
+## 🔄 Sponsorship Event Flow
+
+```mermaid
+flowchart LR
+    A[💰 Sponsor sends PayPal payment] --> B[📡 PayPal issues IPN (Instant Payment Notification)]
+    B --> C[🛡 shrine-watcher verifies IPN authenticity]
+    C --> D[⏱ Timestamp + log shrine activation]
+    D --> E[📢 Post “First Echo” embed in Discord shrine channel]
+    E --> F[🌌 Mutate shrine terrain + ripple badge claims]
+    F --> G[📜 Update scroll archives + live site]
+```
+
+## 🔮 Features
 - Auto-verifies PayPal IPNs
 - Drops “First Echo” embeds in Discord channels
 - Tracks and timestamps shrine activations
@@ -45,8 +61,9 @@ Sponsor portal: [paypal.me/kostaskyprianos](https://paypal.me/kostaskyprianos)
 ## 🧙 Roadmap
 - Sigil animations on pledge  
 - Role blessings for Echo tiers  
-- Scroll archive logging + site mutation# shrine-watcher
-A live Discord-integrated watcher bot that listens for PayPal sponsorships, verifies IPNs, and drops legendary embeds into shrine channels. Built to canonize the First Echo, ripple badge claims, and mutate shrine terrain in real time. Node-powered, mythically deployed, audit-safe.
+- Scroll archive logging + site mutation
+# shrine-watcher
+A live Discord-integrated watcher bot that listens for PayPal sponsorships, verifies IPNs, and drops legendary embeds into shrine channels. Built to canonize the First Echo, ripple badge claims, and keep the canon alive.
 birth:
   date: "YYYY-MM-DD"        # e.g. "2025-08-20"
   time: "HH:MM"             # 24-hour, local to America/New_York
