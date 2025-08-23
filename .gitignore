@@ -1,4 +1,4 @@
-workspace.xml
+.env.sandbox workspace.xml
 junitvmwatcher*.properties
 build.properties
 

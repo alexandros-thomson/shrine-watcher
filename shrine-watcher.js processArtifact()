@@ -1,0 +1,39 @@
+function processArtifact(artifact) {
+  // Existing classification and tagging logic
+  if (artifact.metadata.category === 'sponsor') {
+    artifact.tags.push('Sponsor-Grade');
+  }
+  if (artifact.metadata.isLegendary) {
+    artifact.tags.push('Legendary');
+  }
+
+  // 🛡 HIPAA Ward — BAA Clearance (duplicate‑tag guard)
+  if (artifact.metadata.containsPHI && !artifact.tags.includes('BAA-Cleared')) {
+    artifact.tags.push('BAA-Cleared');
+    artifact.compliance = 'HIPAA-Qualified Cloud (Atlassian)';
+
+    // Ledger logging with full detail
+    logToLedger(artifact, {
+      status: 'BAA-Cleared',
+      date: new Date(),
+      complianceAuthority: 'HIPAA / HITECH',
+      effectiveDate: '2024-11-12',
+      governingLaw: 'Per Atlassian Customer Agreement',
+      noticeRecipient: 'Atlassian Pty Ltd, San Francisco, CA'
+    });
+
+    // Optional: emit to audit trail or monitoring system
+    sendAuditEvent({
+      artifactId: artifact.id,
+      event: 'BAA-Cleared',
+      timestamp: Date.now(),
+      details: {
+        metadata: artifact.metadata,
+        tags: artifact.tags
+      }
+    });
+  }
+
+  // Continue with dispatch / logging
+  dispatchArtifact(artifact);
+}
