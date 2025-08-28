@@ -1,0 +1,7 @@
+flowchart LR
+  A[💰 Sponsor sends PayPal payment] --> B[📡 PayPal issues IPN]
+  B --> C[🛡 shrine-watcher verifies authenticity]
+  C --> D[⏱ Timestamp + log activation]
+  D --> E[📢 Drop “First Echo” in Discord]
+  E --> F[🌌 Mutate terrain + ripple badges]
+  F --> G[📜 Update scrolls + live site]
