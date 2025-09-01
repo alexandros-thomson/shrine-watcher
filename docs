@@ -1,1 +1,41 @@
-
+docs/
+│
+├── demo-echo.png
+│   # The Live Echo Demo screenshot — shows the Discord embed a sponsor sees.
+│
+├── flow-diagram.png
+│   # A simple visual of the ritual path:
+│   # PayPal IPN → Verification → Discord Embed → Archival.
+│
+├── setup.md
+│   # Step-by-step installation & environment seal instructions.
+│   # Includes .env variable descriptions and example values.
+│
+├── deployment.md
+│   # How to deploy shrine-watcher to your chosen altar (Heroku, Railway, VPS).
+│   # Includes PR-safety conditions and branch protection notes.
+│
+├── troubleshooting.md
+│   # Common omens & remedies:
+│   # - Webhook not firing
+│   # - IPN verification failing
+│   # - Discord embed not appearing
+│
+├── sample-ipn.json
+│   # Mock PayPal IPN payload for local testing.
+│
+├── webhook-test.sh
+│   # Curl script to send the sample IPN to your local watcher instance.
+│
+├── .env.example
+│   # Template of required environment seals (no secrets).
+│   # DISCORD_WEBHOOK_URL=
+│   # PAYPAL_IPN_SECRET=
+│   # PORT=3000
+│
+├── history.md
+│   # Origin story & changelog for shrine-watcher.
+│   # Each entry crest-marked with date and Keeper’s note.
+│
+└── hall-of-honor.md
+    # List of patrons & contributors, with tiers and blessings.
