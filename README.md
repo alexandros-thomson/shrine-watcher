@@ -23,7 +23,7 @@ When a patron makes an offering, the shrine‑watcher springs to life:
 > **Tier:** Golden Sigil  
 > **Message:** “May the canon endure.”
 
-![Example Discord Embed showing a sponsor announcement](docs/demo-echo.png)
+(docs/demo-echo.png) 
 
 ### 🛠 How to See It Yourself
 1. Clone and set up the shrine‑watcher (see Installation).
