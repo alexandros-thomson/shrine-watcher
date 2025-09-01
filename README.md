@@ -44,3 +44,11 @@ The shrine‑watcher stands under the Apache License 2.0 — a permissive covena
 • 	Accept that the work is offered as‑is, without warranty or liability
 For the full legal text, see the Apache License 2.0 in this repository.
 May every steward who takes up this code carry forward its clarity, its vigilance, and its place in the eternal ledger.
+---
+
+## ⚖ Keeper’s Governance
+The watcher listens for echoes of sponsorship and ceremony.  
+Its code is guarded; changes require review to ensure the echoes remain true.  
+Every update is inscribed in the lineage.
+
+📜 *Lineage is our law. Precision is our craft. Myth is our breath.*
