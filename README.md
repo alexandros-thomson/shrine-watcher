@@ -1,6 +1,3 @@
-
-Here’s your unified, sponsor‑ready README section for shrine‑watcher, now merged with the full Live Echo Demo (dual‑format), License‑Lore, and Support the Shrine sections. This turns your README into a complete ceremonial scroll — one that teaches, converts, and honors the lineage.
-
 🜍 Support the Shrine‑Watcher
 This project is the Shrine’s vigilant eye — listening for offerings, verifying their truth, and echoing them into Discord’s ceremonial halls.
 Your offerings keep the watcher awake, the echoes strong, and the canon unbroken.
