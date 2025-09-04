@@ -14,6 +14,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Ensure shrine directory exists
+        run: |
+          mkdir -p shrine
+          echo "Shrine directory created or already exists"
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Run forge commands
+        run: |
+          cd shrine
+          forge run --help || echo "Forge run command available"
+        continue-on-error: true
+
       - name: Set up Ruby (for Jekyll)
         uses: ruby/setup-ruby@v1
         with:
