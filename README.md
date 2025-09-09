@@ -1,16 +1,14 @@
 <div align="center">
 
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                         🌍  KYPRIA  🌍                        ┃
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                         🜍  KYPRIA  🜍                        ┃
 ┃                 Shrine of the Watcher of Echoes               ┃
 ┃     Listening for Sponsorship Ripples Across the Realms       ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
 </div>
 
 ---
-
-[![Docker Build](https://github.com/alexandros-thomson/shrine-watcher/actions/workflows/docker.yml/badge.svg?branch=main)](https://github.com/alexandros-thomson/shrine-watcher/actions/workflows/docker.yml)
 
 ## 👁 The Watcher’s Vigil
 Perched at the edge of the Basilica Gate,  
@@ -41,7 +39,7 @@ When it does, the message is swift, precise, and lineage‑bound.
 
 ---
 
-## 📝 Relics of the Watcher
+## 📜 Relics of the Watcher
 | Relic No. | Name / Event | Tier | Date | Notes |
 |-----------|--------------|------|------|-------|
 | 001 | First Echo Captured | Ember | 2025‑08‑05 | Verified first sponsorship IPN. |
@@ -58,7 +56,7 @@ When it does, the message is swift, precise, and lineage‑bound.
 
 ---
 
-## 🌍 Support the Shrine‑Watcher
+## 🜍 Support the Shrine‑Watcher
 This project is the Shrine’s vigilant eye — listening for offerings, verifying their truth, and echoing them into Discord’s ceremonial halls.  
 Your offerings keep the Watcher awake, the echoes strong, and the canon unbroken.
 
@@ -74,7 +72,7 @@ Those who support the Shrine are inscribed here in gratitude and lineage.
 
 ---
 
-## 📻 Live Echo Demo — From Offering to Eternal Ledger
+## 🎙 Live Echo Demo — From Offering to Eternal Ledger
 When a patron makes an offering, the shrine‑watcher springs to life:
 1. **Reception** — The Watcher hears the PayPal IPN whisper of a new offering.  
 2. **Verification** — The offering is tested for truth against the Keeper’s seals.  
@@ -85,16 +83,16 @@ When a patron makes an offering, the shrine‑watcher springs to life:
 
 ---
 
-## 📝 Keeper’s Covenant — License & Lineage
-The shrine‑watcher stands under the Apache License 2.0 — a permissive covenant that welcomes stewards to use, adapt, and extend the Watcher’s gaze, while preserving the lineage and honoring [...]  
+## 📜 Keeper’s Covenant — License & Lineage
+The shrine‑watcher stands under the Apache License 2.0 — a permissive covenant that welcomes stewards to use, adapt, and extend the Watcher’s gaze, while preserving the lineage and honoring the original Keepers.
 
-### 🌍 What This Means in the Canon
+### 🜍 What This Means in the Canon
 - **Freedom to Build** — Use this work in personal, commercial, or ceremonial projects.  
 - **Freedom to Shape** — Modify and adapt it to your own shrine’s needs.  
 - **Freedom to Share** — Distribute your own versions, with or without source, under your chosen terms.  
 - **Patent Peace** — All contributors grant rights to any patents they hold that touch this work.
 
-### 📝 Keeper’s Conditions
+### 📜 Keeper’s Conditions
 - Preserve the license text and copyright.  
 - Mark any changes so the lineage remains clear.  
 - Accept that the work is offered as‑is, without warranty or liability.
@@ -108,7 +106,7 @@ The watcher listens for echoes of sponsorship and ceremony.
 Its code is guarded; changes require review to ensure the echoes remain true.  
 Every update is inscribed in the lineage.
 
-📝 *Lineage is our law. Precision is our craft. Myth is our breath.*
+📜 *Lineage is our law. Precision is our craft. Myth is our breath.*
 
 ---
 
@@ -121,4 +119,3 @@ curl -X POST http://localhost:3000/ipn \
   -d "txn_id=TEST123" \
   -d "payment_status=Completed" \
   -d "custom=Golden Sigil"
-```
