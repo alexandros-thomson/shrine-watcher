@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HorizonForge - Interactive VR World Creation Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .interface-demo {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .demo-section {
+            margin-bottom: 40px;
+        }
+
+        .demo-section h2 {
+            color: #4ecdc4;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .demo-section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 107, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(78, 205, 196, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.8s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(78, 205, 196, 0.2);
+        }
+
+        .feature-card h3 {
+            color: #ff6b6b;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-card h3::before {
+            content: '🎮';
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-demo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="20" cy="80" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .demo-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+            margin: 10px;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            filter: brightness(1.1);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .tech-badge {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(78, 205, 196, 0.2);
+            border-color: #4ecdc4;
+            transform: scale(1.05);
+        }
+
+        .demo-output {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #4ecdc4;
+            font-family: 'Courier New', monospace;
+            display: none;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: blink 2s infinite;
+        }
+
+        .status-online {
+            background: #4ecdc4;
+        }
+
+        .status-processing {
+            background: #ff6b6b;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .footer h3 {
+            color: #4ecdc4;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            background: rgba(78, 205, 196, 0.1);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .links a:hover {
+            background: rgba(78, 205, 196, 0.2);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <header class="header">
+            <h1>🌟 HorizonForge</h1>
+            <p>Revolutionary VR World Creation Platform - Interactive Demo Experience</p>
+        </header>
+
+        <div class="interface-demo">
+            <div class="demo-section">
+                <h2>🎮 Core Features Showcase</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>AI-Powered World Generation</h3>
+                        <p>Create entire VR worlds with simple voice commands. Our advanced AI understands your vision and transforms it into immersive 3D environments instantly.</p>
+                        <div class="status-indicator status-online"></div>
+                        <span>System Online</span>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Real-Time Collaboration</h3>
+                        <p>Build worlds together with friends in real-time. See changes instantly as multiple creators work on the same project simultaneously.</p>
+                        <div class="status-indicator status-online"></div>
+                        <span>Multi-User Ready</span>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Voice-Controlled Creation</h3>
+                        <p>Simply speak your ideas into existence. "Create a floating castle with waterfalls" becomes reality in seconds through advanced voice processing.</p>
+                        <div class="status-indicator status-processing"></div>
+                        <span>Processing Voice Input</span>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Intelligent Asset Library</h3>
+                        <p>Access millions of 3D assets powered by AI recommendations. Find exactly what you need or let AI suggest perfect additions to your world.</p>
+                        <div class="status-indicator status-online"></div>
+                        <span>Library Synchronized</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h2>🎯 Try the Interactive Demo</h2>
+                <p>Experience HorizonForge's revolutionary world creation system right in your browser!</p>
+                
+                <div class="demo-controls">
+                    <button class="demo-button" onclick="startDemo()">🚀 Start World Generation</button>
+                    <button class="demo-button" onclick="voiceDemo()">🎤 Voice Creation Demo</button>
+                    <button class="demo-button" onclick="collaborateDemo()">👥 Collaboration Preview</button>
+                </div>
+
+                <div id="demoOutput" class="demo-output">
+                    <p id="demoText">Click a button above to see HorizonForge in action!</p>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h2>⚡ Technology Stack</h2>
+                <div class="tech-stack">
+                    <div class="tech-badge">Meta Horizon Worlds SDK</div>
+                    <div class="tech-badge">Meta XR SDK</div>
+                    <div class="tech-badge">Unity 3D Engine (2023.2 LTS)</div>
+                    <div class="tech-badge">OpenAI GPT-4 API</div>
+                    <div class="tech-badge">Stable Diffusion API</div>
+                    <div class="tech-badge">Firebase Realtime Database</div>
+                    <div class="tech-badge">WebRTC</div>
+                    <div class="tech-badge">Node.js</div>
+                    <div class="tech-badge">Express Framework</div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <h3>🏆 Experience the Future of VR Creation</h3>
+            <p>HorizonForge represents the next evolution in virtual world building - where imagination meets cutting-edge AI technology.</p>
+            
+            <div class="links">
+                <a href="https://github.com/alexandros-thomson/horizonforge" target="_blank">
+                    🔧 Development Repository
+                </a>
+                <a href="https://alexandros-thomson.github.io/horizonforge/" target="_blank">
+                    🎬 Project Homepage
+                </a>
+                <a href="https://alexandros-thomson.github.io/horizonforge/docs/technical-specs.html" target="_blank">
+                    📄 Technical Documentation
+                </a>
+                <a href="#" onclick="downloadDemo()">
+                    💾 Download VR Demo
+                </a>
+            </div>
+            
+            <p style="margin-top: 30px; opacity: 0.7; font-size: 0.9em;">
+                Built for Meta Quest | Optimized for VR | Powered by AI
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function startDemo() {
+            const output = document.getElementById('demoOutput');
+            const text = document.getElementById('demoText');
+            
+            output.style.display = 'block';
+            text.innerHTML = `
+                <div style="color: #4ecdc4;">🌟 HorizonForge World Generator Activated</div>
+                <br>
+                <div>⚡ Initializing AI Creation Engine...</div>
+                <div>🎮 Loading Meta Horizon Worlds SDK...</div>
+                <div>🏗️ Preparing 3D Asset Library...</div>
+                <div>✅ System Ready for World Creation!</div>
+                <br>
+                <div style="color: #ff6b6b;">Try saying: "Create a mystical forest with glowing trees and floating islands"</div>
+            `;
+            
+            setTimeout(() => {
+                text.innerHTML += `<br><div style="color: #96ceb4;">🎯 World "Mystical Floating Forest" generated successfully!</div>`;
+            }, 3000);
+        }
+
+        function voiceDemo() {
+            const output = document.getElementById('demoOutput');
+            const text = document.getElementById('demoText');
+            
+            output.style.display = 'block';
+            text.innerHTML = `
+                <div style="color: #4ecdc4;">🎤 Voice Creation System Online</div>
+                <br>
+                <div>🎧 Listening for voice input...</div>
+                <div>🧠 Processing natural language with GPT-4...</div>
+                <div>🎨 Converting speech to 3D world parameters...</div>
+                <br>
+                <div style="color: #ff6b6b;">Voice Input Detected: "Build me a cyberpunk city with neon lights"</div>
+            `;
+            
+            setTimeout(() => {
+                text.innerHTML += `
+                <br>
+                <div>⚡ Generating cyberpunk architecture...</div>
+                <div>💫 Adding neon lighting systems...</div>
+                <div>🏙️ Placing futuristic vehicles and NPCs...</div>
+                <div style="color: #96ceb4;">✅ "Neo-Tokyo VR" world created from voice command!</div>`;
+            }, 2500);
+        }
+
+        function collaborateDemo() {
+            const output = document.getElementById('demoOutput');
+            const text = document.getElementById('demoText');
+            
+            output.style.display = 'block';
+            text.innerHTML = `
+                <div style="color: #4ecdc4;">👥 Real-Time Collaboration Demo</div>
+                <br>
+                <div>🌐 Connecting to Firebase Realtime Database...</div>
+                <div>🔄 Synchronizing with other creators...</div>
+                <div>👤 User "Alex_VR" joined the session</div>
+                <div>👤 User "Maya_Creator" joined the session</div>
+                <br>
+                <div>🏗️ Alex_VR is building a mountain range...</div>
+                <div>🎨 Maya_Creator is adding a waterfall system...</div>
+                <div>✨ You are designing the lighting atmosphere...</div>
+            `;
+            
+            setTimeout(() => {
+                text.innerHTML += `
+                <br>
+                <div style="color: #96ceb4;">🎊 Collaborative world "Team Fortress VR" completed!</div>
+                <div>📊 3 creators contributed 247 objects in real-time</div>`;
+            }, 3500);
+        }
+
+        function downloadDemo() {
+            alert('🎮 VR Demo download would begin here! This connects to the actual Meta Quest application when deployed.');
+        }
+
+        // Add some interactive particles effect
+        function createParticles() {
+            const particles = [];
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.style.position = 'fixed';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            canvas.style.pointerEvents = 'none';
+            canvas.style.zIndex = '-1';
+            canvas.style.opacity = '0.1';
+            
+            document.body.appendChild(canvas);
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+            
+            // Create floating particles
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 3 + 1,
+                    color: `hsl(${Math.random() * 360}, 70%, 70%)`
+                });
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+                    
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fillStyle = particle.color;
+                    ctx.fill();
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+        
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+    </script>
+</body>
+</html>
