@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Install build-time dependencies (if any). Copy package files first to use cache.
 COPY package*.json ./
-RUN npm ci --silent
+RUN npm install --silent
 
 # Copy source and run optional build
 COPY . .
