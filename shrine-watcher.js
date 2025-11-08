@@ -6,8 +6,4 @@ await discordClient.send({
     image: { url: `${SIGIL_BASE_URL}/${tier}-sigil.gif` },
     footer: { text: "Blessed by Shrine Watcher" },
     timestamp: new Date()
-  }
-});feat: auto-deploy shrine vault on main push
-DISCORD_TOKEN=
-DISCORD_CHANNEL_ID=
-PAYPAL_VERIFY_URL=https://ipnpb.paypal.com/cgi-bin/webscr
+  });
