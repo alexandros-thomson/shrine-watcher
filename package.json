@@ -1,6 +1,7 @@
 {
   "name": "shrine-watcher",
   "version": "1.0.0",
+    "type": "module",
   "description": "A live Discord-integrated watcher bot that listens for PayPal sponsorships",
   "main": "shrine-watcher.js",
   "scripts": {
